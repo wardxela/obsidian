@@ -11,8 +11,12 @@
             "id": "7a609d02e43bdb37",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Git/Ветки.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Git/Ветки.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Git/Ветки.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Git/Ветки.md"
+              }
             }
           }
         ]
@@ -138,6 +146,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "7a609d02e43bdb37",
-  "lastOpenFiles": []
+  "active": "b7686386cba1955d",
+  "lastOpenFiles": [
+    "Git/Конфигурация.md",
+    "Git/Коммиты.md",
+    "Git/Ветки.md",
+    "Git"
+  ]
 }
