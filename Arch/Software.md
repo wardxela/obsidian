@@ -20,4 +20,5 @@ AUR package didn't work for me so I recommend to install from original [source](
 ```bash
 curl -L https://aka.ms/gcm/linux-install-source.sh | sh
 git-credential-manager configure
+git config --global credential.credentialStore plaintext
 ```
