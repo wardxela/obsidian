@@ -60,7 +60,16 @@ https://www.youtube.com/watch?v=7je1ygc9Gew&list=WL&index=2&t=6689s&ab_channel=k
 ```html
 <section>
 	<h1>Человек</h1>
-<section>
+	<section>
+		<h1>Тело</h1>
+		<section>
+			<h1>Руки</h1>
+			<section>
+				<h1>Кисти</h1>
+			</section>
+		</section>
+	</section>
+</section>
 ```
 
 **`<article>` - это не статья**
@@ -70,10 +79,10 @@ https://www.youtube.com/watch?v=7je1ygc9Gew&list=WL&index=2&t=6689s&ab_channel=k
 ```html
 <article>
 	<h1>Товар 1</h1>
-<article>
+</article>
 <article>
 	<h1>Товар 2</h1>
-<article>
+</article>
 ```
 
 **`<aside>` - это не боковая панель**
@@ -99,7 +108,7 @@ https://www.youtube.com/watch?v=7je1ygc9Gew&list=WL&index=2&t=6689s&ab_channel=k
 
 **Блочные и inline элементы не имеют ничего общего с семантикой**
 
-- Тег `<div>` **нельзя** вложить в `<span>` не потому, что это
+- Тег `<div>` **нельзя** вложить в `<span>` не потому, что он блочный, а потому, что с точки зрения семантики он представляет собой группу информации, в то время, как span - это текстовая информация. В тоже время, согласно спецификации, оба тега `<div>`, `</span>` являются семантически **нейтральными**.
 
 **schema.org**
 
