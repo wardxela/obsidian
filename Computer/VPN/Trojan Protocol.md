@@ -6,6 +6,11 @@ apt install nginx
 ```
 # Configure Client
 
+# Make websites think you are not protected
+
+
+- [Disable WebRTC in your browser](https://github.com/K3V1991/How-to-disable-WebRTC-in-Chrome-Firefox-Safari-Opera-and-Edge)
+
 # Resources
 - [Trojan Go Implementation](https://github.com/p4gefau1t/trojan-go)
 - [Trojan C++ Implementation](https://github.com/trojan-gfw/trojan)
