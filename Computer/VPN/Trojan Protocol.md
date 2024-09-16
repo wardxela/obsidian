@@ -4,7 +4,7 @@ Install `nginx`
 apt update
 apt install nginx
 ```
-replace _ in line **_server_name _;_** with your domain name; e.g. _hahahaha.com_
+replace _ in line **_server_name _;_** with your domain name; e.g. _wardxeladog.work.gd_
 ```sh
 vi /etc/nginx/sites-available/default
 ```
@@ -12,27 +12,27 @@ Copy default file _index.nginx-debian.html_ to _index.html_
 ```sh
 cp /var/www/html/index.nginx-debian.html /var/www/html/index.html
 ```
-run nginx server
+Run nginx server
 ```sh
 systemctl start nginx
 ```
-install and configure certbot
+Install and configure certbot
 ```sh
 apt install certbot python3-certbot-nginx
 ```
-configure certybot
+Configure certybot
 ```sh
 certbot certonly --nginx
 ```
-then the certificates will be stored in _/etc/letsencrypt/live/hahahaha.com/_
+Then the certificates will be stored in _/etc/letsencrypt/live/hahahaha.com/_
 ```sh
-ls -la /etc/letsencrypt/live/hahahaha.com/
+ls -la /etc/letsencrypt/live/wardxeladog.work.gd/
 ```
-fix the file permissions
+Fix the file permissions
 ```sh
 chmod +rx /etc/letsencrypt/live
 chmod +rx /etc/letsencrypt/archive
-chmod -R +r /etc/letsencrypt/archive/hahahaha.com
+chmod -R +r /etc/letsencrypt/archive/wardxeladog.work.gd
 ```
 # Install Trojan Go
 Download latest release from GitHub on server
@@ -66,9 +66,9 @@ Configure `server.json`
 ```json
 	"password": [ "<your_password>" ],
 	
-	"cert": "<server_cert>",
-	"key": "<cert_key",
-	"sni": "<your_domain>",
+	"cert": "/etc/letsencrypt/live/wardxeladog.work.gd/fullchain.pem",
+	"key": "/etc/letsencrypt/live/wardxeladog.work.gd/privkey.pem",
+	"sni": "wardxeladog.work.gd",
 	
 	"fallback_addr": "127.0.0.1",
 	"fallback_port": 443,
@@ -83,8 +83,6 @@ systemctl start trojan-go@server.service
 # Configure Client
 
 # Make websites think you are not protected
-
-
 - [Disable WebRTC in your browser](https://github.com/K3V1991/How-to-disable-WebRTC-in-Chrome-Firefox-Safari-Opera-and-Edge)
 
 # Resources
