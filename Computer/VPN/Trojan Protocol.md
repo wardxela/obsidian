@@ -33,14 +33,21 @@ systemctl enable trojan-go@server.service
 ```
 Configure `server.json`
 ```json
-	...
 	"password": [ "<your_password>" ],
-	"cert": "",
-	"key": "",
+	
+	"cert": "<server_cert>",
+	"key": "<cert_key",
 	"sni": "<your_domain>",
+	
 	"fallback_addr": "127.0.0.1",
 	"fallback_port": 443,
-	"geoip"
+	
+	"geoip": "/etc/trojan-go/geoip.dat",
+	"geosite": "/etc/trojan-go/geosite.dat"
+```
+Restart server
+```sh
+systemctl start trojan-go@server.service
 ```
 # Configure Client
 
