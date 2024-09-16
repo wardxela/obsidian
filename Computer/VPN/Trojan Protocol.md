@@ -1,4 +1,14 @@
 # Configure Server
+# Install Trojan Go
+```sh
+cd /tmp/
+wget https://github.com/p4gefau1t/trojan-go/releases/download/v0.10.6/trojan-go-linux-amd64.zip
+cd ./trojan-go
+```
+```sh
+mv trojan-go /usr/bin
+mkdir /etc/trojan-go
+```
 ## Configure Web Server
 Install `nginx`
 ```sh
