@@ -1,7 +1,38 @@
 # Configure Web Server
 Install `nginx`
 ```sh
+apt update
 apt install nginx
+```
+replace _ in line **_server_name _;_** with your domain name; e.g. _hahahaha.com_
+```sh
+vi /etc/nginx/sites-available/default
+```
+Copy default file _index.nginx-debian.html_ to _index.html_
+```sh
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.html
+```
+run nginx server
+```sh
+systemctl start nginx
+```
+install and configure certbot
+```sh
+apt install certbot python3-certbot-nginx
+```
+configure certybot
+```sh
+certbot certonly --nginx
+```
+then the certificates will be stored in _/etc/letsencrypt/live/hahahaha.com/_
+```sh
+ls -la /etc/letsencrypt/live/hahahaha.com/
+```
+fix the file permissions
+```sh
+chmod +rx /etc/letsencrypt/live
+chmod +rx /etc/letsencrypt/archive
+chmod -R +r /etc/letsencrypt/archive/hahahaha.com
 ```
 # Install Trojan Go
 Download latest release from GitHub on server
@@ -19,7 +50,7 @@ mv geoip.dat geosite.dat /etc/trojan-go/
 ```
 Configure system service:
 ```sh
-vim example/trojan-go@.service
+vi example/trojan-go@.service
 ```
 And replace the `User` field with `root`
 ```yaml
