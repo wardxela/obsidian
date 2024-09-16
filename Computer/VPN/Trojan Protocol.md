@@ -1,13 +1,30 @@
 # Configure Server
 # Install Trojan Go
+Download latest release from GitHub on server
 ```sh
 cd /tmp/
 wget https://github.com/p4gefau1t/trojan-go/releases/download/v0.10.6/trojan-go-linux-amd64.zip
 cd ./trojan-go
 ```
+Create/copy necessary files
 ```sh
 mv trojan-go /usr/bin
 mkdir /etc/trojan-go
+mv example/server.json /etc/trojan-go/
+mv geoip.dat geosite.dat /etc/trojan-go/
+```
+Configure system service
+```sh
+vim example/trojan-go@.service
+```
+And replace the `User` field with `root`
+```yaml
+User=root
+```
+Register service
+```sh
+mv example/trojan-go@.service /etc/systemd/system
+systemctl daemon-reload
 ```
 ## Configure Web Server
 Install `nginx`
