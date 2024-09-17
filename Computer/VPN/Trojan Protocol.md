@@ -8,9 +8,9 @@ Configure nginx
 ```sh
 vi /etc/nginx/sites-available/default
 ```
-Change corresponding fields
-```conf
-server_name <server_name>;
+Replace the `server_name` field with your domain, e.g wardxeladog.work.gd
+```nginx
+server_name wardxeladog.work.gd;
 ```
 Copy default file _index.nginx-debian.html_ to _index.html_
 ```sh
@@ -89,7 +89,9 @@ iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 iptables -A OUTPUT -p icmp --icmp-type echo-reply -j DROP
 ```
 Hide open web proxy ports:
-
+```sh
+iptables -A INPUT -p tcp --dport 80 -j DROP
+```
 # Configure Client
 
 # Make websites think you are not protected
