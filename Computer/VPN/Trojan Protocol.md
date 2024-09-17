@@ -54,7 +54,7 @@ Configure trojan as a service
 ```bash
 vi example/trojan-go@.service
 ```
-Replace the `User` field with `root`
+Replace `User` with `root`
 ```yaml
 User=root
 ```
