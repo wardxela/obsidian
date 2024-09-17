@@ -36,6 +36,7 @@ Download latest release from GitHub on server
 ```sh
 cd /tmp/
 wget https://github.com/p4gefau1t/trojan-go/releases/download/v0.10.6/trojan-go-linux-amd64.zip
+unzip trojan-go-linux-amd64.zip -d ./trojan-go
 cd ./trojan-go
 ```
 Create/copy necessary files
@@ -62,16 +63,17 @@ systemctl enable trojan-go@server.service
 Configure `server.json`
 ```json
 	"password": [ "<your_password>" ],
-	
-	"cert": "/etc/letsencrypt/live/wardxeladog.work.gd/fullchain.pem",
-	"key": "/etc/letsencrypt/live/wardxeladog.work.gd/privkey.pem",
-	"sni": "wardxeladog.work.gd",
-	
-	"fallback_addr": "127.0.0.1",
-	"fallback_port": 443,
-	
-	"geoip": "/etc/trojan-go/geoip.dat",
-	"geosite": "/etc/trojan-go/geosite.dat"
+	"ssl": {
+		"cert": "/etc/letsencrypt/live/wardxeladog.work.gd/fullchain.pem",
+		"key": "/etc/letsencrypt/live/wardxeladog.work.gd/privkey.pem",
+		"sni": "wardxeladog.work.gd",
+		"fallback_addr": "127.0.0.1",
+		"fallback_port": 443,
+	},
+	"router": {
+		"geoip": "/etc/trojan-go/geoip.dat",
+		"geosite": "/etc/trojan-go/geosite.dat"
+	}
 ```
 Restart server
 ```sh
