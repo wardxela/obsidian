@@ -1,8 +1,8 @@
 # Configure Web Server
-Install `nginx`
+Install packages
 ```sh
 apt update
-apt install nginx
+apt install nginx certbot python3-certbot-nginx
 ```
 replace _ in line **_server_name _;_** with your domain name; e.g. _wardxeladog.work.gd_
 ```sh
@@ -16,13 +16,10 @@ Run nginx server
 ```sh
 systemctl start nginx
 ```
-Install and configure certbot
+Issue certificates
 ```sh
-apt install certbot python3-certbot-nginx
-```
-Configure certbot
-```sh
-certbot certonly --nginx
+# certbot certonly --nginx
+certbot
 ```
 Then the certificates will be stored in _/etc/letsencrypt/live/wardxeladog.work.gd/_
 ```sh
