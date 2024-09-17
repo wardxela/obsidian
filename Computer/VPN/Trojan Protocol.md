@@ -16,7 +16,7 @@ Run nginx server
 ```sh
 systemctl start nginx
 ```
-Issue certificates
+Issue certificates. Note that we use `certonly` since certificates will be used later by trojan server.
 ```sh
 certbot certonly --nginx
 ```
