@@ -20,11 +20,11 @@ Install and configure certbot
 ```sh
 apt install certbot python3-certbot-nginx
 ```
-Configure certybot
+Configure certbot
 ```sh
 certbot certonly --nginx
 ```
-Then the certificates will be stored in _/etc/letsencrypt/live/hahahaha.com/_
+Then the certificates will be stored in _/etc/letsencrypt/live/wardxeladog.work.gd/_
 ```sh
 ls -la /etc/letsencrypt/live/wardxeladog.work.gd/
 ```
@@ -84,7 +84,6 @@ systemctl start trojan-go@server.service
 
 # Make websites think you are not protected
 - [Disable WebRTC in your browser](https://github.com/K3V1991/How-to-disable-WebRTC-in-Chrome-Firefox-Safari-Opera-and-Edge)
-
 # Resources
 - [Trojan Go Implementation](https://github.com/p4gefau1t/trojan-go)
 - [Trojan C++ Implementation](https://github.com/trojan-gfw/trojan)
