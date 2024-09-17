@@ -96,7 +96,7 @@ ufw deny from any to any port 80
 ufw allow from 127.0.0.1 to any port 80
 ```
 # Configure Client
-Configuring client is much easier and straightforward. Just install binary, adjust config and run. That's all. Text me if you with to know more.
+Configuring client is much easier and straightforward. Just install binary, adjust config and run. That's all. Text me if you wish to know more.
 
 ## Make websites think you are not protected
 - [Disable WebRTC in your browser](https://github.com/K3V1991/How-to-disable-WebRTC-in-Chrome-Firefox-Safari-Opera-and-Edge)
