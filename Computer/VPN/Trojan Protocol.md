@@ -1,12 +1,16 @@
-# Configure Web Server
+# Setting Up Fake Web Server
 Install packages
 ```sh
 apt update
 apt install nginx certbot python3-certbot-nginx
 ```
-replace _ in line **_server_name _;_** with your domain name; e.g. _wardxeladog.work.gd_
+Configure nginx
 ```sh
 vi /etc/nginx/sites-available/default
+```
+Change corresponding fields
+```conf
+server_name <server_name>;
 ```
 Copy default file _index.nginx-debian.html_ to _index.html_
 ```sh
@@ -30,26 +34,26 @@ chmod +rx /etc/letsencrypt/live
 chmod +rx /etc/letsencrypt/archive
 chmod -R +r /etc/letsencrypt/archive/wardxeladog.work.gd
 ```
-# Install Trojan Go
-Download latest release from GitHub on server
+# Setting Up Trojan Go
+Download latest release from GitHub
 ```sh
 cd /tmp/
 wget https://github.com/p4gefau1t/trojan-go/releases/download/v0.10.6/trojan-go-linux-amd64.zip
 unzip trojan-go-linux-amd64.zip -d ./trojan-go
 cd ./trojan-go
 ```
-Create/copy necessary files
+Create necessary files
 ```sh
 mv trojan-go /usr/bin
 mkdir /etc/trojan-go
 mv example/server.json /etc/trojan-go/
 mv geoip.dat geosite.dat /etc/trojan-go/
 ```
-Configure system service:
+Configure trojan as a service
 ```sh
 vi example/trojan-go@.service
 ```
-And replace the `User` field with `root`
+Replace the `User` field with `root`
 ```yaml
 User=root
 ```
@@ -61,23 +65,31 @@ systemctl enable trojan-go@server.service
 ```
 Configure `server.json`
 ```json
-	"password": [ "<your_password>" ],
-	"ssl": {
-		"cert": "/etc/letsencrypt/live/wardxeladog.work.gd/fullchain.pem",
-		"key": "/etc/letsencrypt/live/wardxeladog.work.gd/privkey.pem",
-		"sni": "wardxeladog.work.gd",
-		"fallback_addr": "127.0.0.1",
-		"fallback_port": 443,
-	},
-	"router": {
-		"geoip": "/etc/trojan-go/geoip.dat",
-		"geosite": "/etc/trojan-go/geosite.dat"
-	}
+"password": [ "<your_password>" ],
+"ssl": {
+	"cert": "/etc/letsencrypt/live/wardxeladog.work.gd/fullchain.pem",
+	"key": "/etc/letsencrypt/live/wardxeladog.work.gd/privkey.pem",
+	"sni": "wardxeladog.work.gd",
+	"fallback_addr": "127.0.0.1",
+	"fallback_port": 443,
+},
+"router": {
+	"geoip": "/etc/trojan-go/geoip.dat",
+	"geosite": "/etc/trojan-go/geosite.dat"
+}
 ```
 Restart server
 ```sh
 systemctl start trojan-go@server.service
 ```
+# Advanced settings
+Disable two-way ping:
+```sh
+iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+iptables -A OUTPUT -p icmp --icmp-type echo-reply -j DROP
+```
+Hide open web proxy ports:
+
 # Configure Client
 
 # Make websites think you are not protected
