@@ -1,12 +1,12 @@
 # Server
 ## Set Up Fake Web Server
 Install packages
-```sh
+```bash
 apt update
 apt install nginx certbot python3-certbot-nginx
 ```
 Configure `nginx`
-```sh
+```bash
 vi /etc/nginx/sites-available/default
 ```
 Replace `server_name` with your domain, e.g *wardxeladog.work.gd*
@@ -14,53 +14,52 @@ Replace `server_name` with your domain, e.g *wardxeladog.work.gd*
 server_name wardxeladog.work.gd;
 ```
 Copy default html
-```sh
+```bash
 cp /var/www/html/index.nginx-debian.html /var/www/html/index.html
 ```
 Run nginx server
-```sh
+```bash
 systemctl start nginx
 ```
-Issue certificates.
-Note that we use `certonly` subcommand since certificates won't be used directly by nginx but by the Trojan Server.
-```sh
+Then issue the certificates. Note that we use `certonly` subcommand since the certificates won't be used directly by nginx but by the Trojan Server that we are gonna set up later.
+```bash
 certbot certonly --nginx
 ```
-Then the certificates will be stored in _/etc/letsencrypt/live/wardxeladog.work.gd/_
-```sh
+The certificates are stored in _/etc/letsencrypt/live/your_domain/_
+```bash
 ls -la /etc/letsencrypt/live/wardxeladog.work.gd/
 ```
 Fix the file permissions
-```sh
+```bash
 chmod +rx /etc/letsencrypt/live
 chmod +rx /etc/letsencrypt/archive
 chmod -R +r /etc/letsencrypt/archive/wardxeladog.work.gd
 ```
 ## Set Up Trojan Go
 Download latest release from GitHub
-```sh
+```bash
 cd /tmp/
 wget https://github.com/p4gefau1t/trojan-go/releases/download/v0.10.6/trojan-go-linux-amd64.zip
 unzip trojan-go-linux-amd64.zip -d ./trojan-go
 cd ./trojan-go
 ```
 Create necessary files
-```sh
+```bash
 mv trojan-go /usr/bin
 mkdir /etc/trojan-go
 mv example/server.json /etc/trojan-go/
 mv geoip.dat geosite.dat /etc/trojan-go/
 ```
 Configure trojan as a service
-```sh
+```bash
 vi example/trojan-go@.service
 ```
 Replace the `User` field with `root`
 ```yaml
 User=root
 ```
-And finally register the service
-```sh
+And register
+```bash
 mv example/trojan-go@.service /etc/systemd/system
 systemctl daemon-reload
 systemctl enable trojan-go@server.service
@@ -81,22 +80,23 @@ Configure `server.json`
 }
 ```
 Restart server
-```sh
+```bash
 systemctl start trojan-go@server.service
 ```
 ## Advanced Security Settings
 Disable two-way ping:
-```sh
+```bash
 iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 iptables -A OUTPUT -p icmp --icmp-type echo-reply -j DROP
 ```
 Hide open web proxy ports:
-```sh
+```bash
 ufw enable
 ufw deny from any to any port 80
 ufw allow from 127.0.0.1 to any port 80
 ```
 # Configure Client
+Configuring client is much easier and straightforward. Just install binary, adjust config and run. That's all. Text me if you with to know more.
 
 ## Make websites think you are not protected
 - [Disable WebRTC in your browser](https://github.com/K3V1991/How-to-disable-WebRTC-in-Chrome-Firefox-Safari-Opera-and-Edge)
