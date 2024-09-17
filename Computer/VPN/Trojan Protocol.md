@@ -18,8 +18,7 @@ systemctl start nginx
 ```
 Issue certificates
 ```sh
-# certbot certonly --nginx
-certbot
+certbot certonly --nginx
 ```
 Then the certificates will be stored in _/etc/letsencrypt/live/wardxeladog.work.gd/_
 ```sh
