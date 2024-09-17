@@ -1,18 +1,19 @@
-# Setting Up Fake Web Server
+# Server
+## Set Up Fake Web Server
 Install packages
 ```sh
 apt update
 apt install nginx certbot python3-certbot-nginx
 ```
-Configure nginx
+Configure `nginx`
 ```sh
 vi /etc/nginx/sites-available/default
 ```
-Replace the `server_name` field with your domain, e.g wardxeladog.work.gd
+Replace `server_name` with your domain, e.g *wardxeladog.work.gd*
 ```nginx
 server_name wardxeladog.work.gd;
 ```
-Copy default file _index.nginx-debian.html_ to _index.html_
+Copy default html
 ```sh
 cp /var/www/html/index.nginx-debian.html /var/www/html/index.html
 ```
@@ -20,7 +21,8 @@ Run nginx server
 ```sh
 systemctl start nginx
 ```
-Issue certificates. Note that we use `certonly` since certificates will be used later by trojan server.
+Issue certificates.
+Note that we use `certonly` subcommand since certificates won't be used directly by nginx but by the Trojan Server.
 ```sh
 certbot certonly --nginx
 ```
@@ -34,7 +36,7 @@ chmod +rx /etc/letsencrypt/live
 chmod +rx /etc/letsencrypt/archive
 chmod -R +r /etc/letsencrypt/archive/wardxeladog.work.gd
 ```
-# Setting Up Trojan Go
+## Set Up Trojan Go
 Download latest release from GitHub
 ```sh
 cd /tmp/
@@ -82,7 +84,7 @@ Restart server
 ```sh
 systemctl start trojan-go@server.service
 ```
-# Advanced settings
+## Advanced Security Settings
 Disable two-way ping:
 ```sh
 iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
@@ -90,11 +92,13 @@ iptables -A OUTPUT -p icmp --icmp-type echo-reply -j DROP
 ```
 Hide open web proxy ports:
 ```sh
-iptables -A INPUT -p tcp --dport 80 -j DROP
+ufw enable
+ufw deny from any to any port 80
+ufw allow from 127.0.0.1 to any port 80
 ```
 # Configure Client
 
-# Make websites think you are not protected
+## Make websites think you are not protected
 - [Disable WebRTC in your browser](https://github.com/K3V1991/How-to-disable-WebRTC-in-Chrome-Firefox-Safari-Opera-and-Edge)
 # Resources
 - [Trojan Go Implementation](https://github.com/p4gefau1t/trojan-go)
