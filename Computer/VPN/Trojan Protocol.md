@@ -105,3 +105,4 @@ Configuring client is much easier and straightforward. Just install binary, adju
 - [Trojan Go tutorial | Server and client manual installation and configuration](https://youtu.be/Ymlc_Pjhm8s?si=FTTopRv8TO1K_Z7g)
 - [Install Trojan-GFW Server on Ubuntu Linux](https://sedap.github.io/install-trojan-gfw-on-ubuntu.html)
 - [How to Install, Configure, and Run Trojan-GFW](https://oilandfish.net/posts/trojan-gfw.html)
+- [Trojan go](https://note.kiui.moe/web/proxy/trojan-go/#clash-client-recommended)
