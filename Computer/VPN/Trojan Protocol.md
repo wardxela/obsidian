@@ -90,8 +90,9 @@ iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
 iptables -A OUTPUT -p icmp --icmp-type echo-reply -j DROP
 ```
 Hide open web proxy ports:
+I wasn't able to find working solution. Of course you can try the following command, maybe it'll help you.
 ```bash
-iptables -A INPUT -p tcp --dport 80 -j DROP
+# iptables -A INPUT -p tcp --dport 80 -j DROP
 ```
 # Configure Client
 Configuring client is much easier and straightforward. Just install binary, adjust config and run. That's all. Text me if you wish to know more.
